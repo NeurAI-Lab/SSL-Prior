@@ -15,7 +15,7 @@ resulting network
 
 [//]: # (![image info]&#40;./src/ssl.png&#41;)
 
-<img src="./src/ssl.png"  width="656" height="350">
+<img src="./src/ssl-prior.png"  width="656" height="350">
 
 
 
