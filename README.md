@@ -27,6 +27,7 @@ resulting network
 
 ## Setup
 
+Hyper-parameters for different SSL techniques and datasets -
 [//]: # (![image info]&#40;./src/hyper.png&#41;)
 <img src="./src/hyper1.png"  width="450" height="600">
 <img src="./src/hyper2.png"  width="450" height="600">
