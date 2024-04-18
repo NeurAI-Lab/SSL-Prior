@@ -1,0 +1,49 @@
+exp: simclr_cif10_tv1
+seed: 0
+train:
+    model: simclr
+    backbone: resnet18
+    epochs: 1000
+    optimizer:
+        name: adam
+        lr: 0.0003
+        weight_decay: 1.e-6
+        momentum: 0
+        scheduler: False
+    dataset:
+        name: CIFAR10
+        data_dir: /data/input-ai/datasets/CIFAR-10
+        img_size: 32
+        norm_aug: False
+        transform: 'v1'
+    batchsize: 256
+    temperature: 0.5
+    n_proj: 128
+    momentum:
+        m_backbone: False
+        m_update: 0.990
+    loss:
+        criterion_weight: { 'sim': [ 1, 1 ], 'invar': [ 25.0, 1 ], 'varn': [ 25.0, 1 ], 'covar': [ 1, 1 ], 'hcr': [ 1, 1 ] }
+    criterion_weight: [1, 0]
+    save_dir: /volumes2/ssl/results23
+    save_model: 250
+    num_workers: 4
+eval:
+    model: simclr
+    backbone: resnet18
+    dataset:
+        name: CIFAR10
+        data_dir: /data/input-ai/datasets/CIFAR-10
+        classes: 10
+        img_size: 32
+        norm_aug: False
+    epochs: 100
+    batchsize: 64
+    optimizer:
+        name: adam
+        lr: 0.0003
+        weight_decay: 1.e-6
+        momentum: 0
+        scheduler: False
+    model_path: /volumes2/ssl/results23
+    num_workers: 4

@@ -1,0 +1,49 @@
+exp: vicreg_cif10_tv1_desk
+seed : 0
+train:
+    model: vicreg
+    backbone: resnet18
+    epochs: 1000
+    optimizer:
+        name: adam
+        lr: 0.0003
+        weight_decay: 1.e-6
+        momentum: 0
+        scheduler: True
+    dataset:
+        name: CIFAR10
+        data_dir: /data/input-ai/datasets/CIFAR-10
+        img_size: 32
+        norm_aug: False
+        transform: 'v1'
+    batchsize: 256
+    temperature: 0.5
+    n_proj: 2048
+    momentum:
+        m_backbone: False
+        m_update: 0.990
+    loss:
+        criterion_weight: {'sim': [1, 1], 'invar': [25.0, 1], 'varn': [25.0, 1], 'covar': [1, 1], 'hcr': [1, 1]}
+    save_dir: /data/output-ai/shruthi.gowda/ssl_cog/base
+    save_model: 200
+    num_workers: 4
+eval:
+    model: vicreg
+    backbone: resnet18
+    dataset:
+        name: CIFAR10
+        data_dir: /data/input-ai/datasets/CIFAR-10
+        classes: 10
+        img_size: 32
+        norm_aug: False
+    epochs: 100
+    batchsize: 256
+    optimizer:
+        name: adam
+        lr: 0.0003
+        weight_decay: 1.e-6
+        momentum: 0
+        scheduler: False
+    model_path: /data/output-ai/shruthi.gowda/ssl_cog/base
+    num_workers: 4
+

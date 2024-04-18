@@ -1,0 +1,57 @@
+exp: cog3_cif10
+seed : 0
+train:
+    model: cog3_vic
+    backbone: resnet18
+    epochs: 1
+    optimizer:
+        name: adam
+        lr: 0.0003
+        weight_decay: 1.e-6
+        momentum: 0
+        scheduler: True
+    dataset:
+        name: CIFAR10
+        data_dir: /data/input-ai/datasets/CIFAR-10
+        img_size: 32
+        norm_aug: False
+        sobel_gauss_ksize: 3
+        sobel_ksize: 3
+        sobel_upsample: True
+        transform: 'v3'
+    batchsize: 128
+    temperature: 0.5
+    n_proj: 2048
+    momentum:
+        m_backbone: False
+        m_update: 0.990
+    loss:
+        eps: 1.0
+        loss_mode: ['invar', 'varn']
+        criterion_weight: { 'sim': [ 1,0.5], 'invar': [ 1,0.5], 'varn': [ 1,0.5],  'covar': [ 1,0.5 ], 'hcr': [ 1,0.5 ] }
+        criterion_weight: { 'sim': [ 1,2], 'invar': [ 1,2], 'varn': [ 1,2 ],  'covar': [ 1,2 ], 'hcr': [ 1,2 ] }
+        #criterion_weight: {'sim':[1,1], 'invar': [1,1], 'varn':[0,0],  'covar':[0,0], 'hcr':[1,1]}
+    save_dir: output
+    save_model: 2
+    num_workers: 0
+
+eval:
+    model: cog1
+    backbone: resnet18
+    dataset:
+        name: CIFAR10
+        data_dir: /data/input-ai/datasets/CIFAR-10
+        classes: 10
+        img_size: 32
+        norm_aug: False
+    epochs: 1
+    batchsize: 64
+    optimizer:
+        name: adam
+        lr: 0.0003
+        weight_decay: 1.e-6
+        momentum: 0
+        scheduler: False
+    model_path: output
+    num_workers: 4
+

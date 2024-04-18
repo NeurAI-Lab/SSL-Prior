@@ -1,0 +1,49 @@
+eval:
+  backbone: resnet18
+  batchsize: 256
+  dataset:
+    classes: 10
+    data_dir: /data/input-ai/datasets/CIFAR-10
+    img_size: 32
+    name: CIFAR10
+    norm_aug: 'True'
+  epochs: 100
+  model: simsiam
+  model_path: /output/base
+  num_workers: 4
+  optimizer:
+    lr: 0.0003
+    momentum: 0
+    name: adam
+    scheduler: 'False'
+    weight_decay: 1.0e-06
+exp: simsiam-CIFAR10-augnTrue-s-0
+seed: 0
+train:
+  backbone: resnet18
+  batchsize: 256
+  criterion_weight:
+  - 1
+  - 0
+  - 0
+  dataset:
+    data_dir: /data/input-ai/datasets/CIFAR-10
+    img_size: 32
+    name: CIFAR10
+    norm_aug: 'True'
+  epochs: 1000
+  model: simsiam
+  momentum:
+    m_backbone: false
+    m_update: 0.99
+  n_proj: 2048
+  num_workers: 4
+  optimizer:
+    lr: 0.0003
+    momentum: 0
+    name: adam
+    scheduler: 'True'
+    weight_decay: 1.0e-06
+  save_dir: output/base
+  save_model: 200
+  temperature: 0.5
