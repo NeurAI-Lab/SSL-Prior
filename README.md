@@ -35,6 +35,15 @@ Hyper-parameters for different SSL techniques and datasets -
 
 ## Cite Our Work
 
+If you find the code useful in your research, please consider citing our paper:
+
+    @article{gowda2024can,
+       title={Can We Break Free from Strong Data Augmentations in Self-Supervised Learning?},
+       author={Gowda, Shruthi and Arani, Elahe and Zonooz, Bahram},
+       journal={arXiv preprint arXiv:2404.09752},
+       year={2024}
+    }
+
 ## License
 
 This project is licensed under the terms of the MIT license.
